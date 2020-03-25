@@ -7,21 +7,24 @@ using namespace std;
 
 int calculateClassRank(string s)
 {
-    int num=0, i=0, sum=0;
+    int num=0, i=0, sum=0, p=1;
     while(i<s.size())
     {
         num++;
-        sum*=3;
-        if(s[i]=='u')
-            sum--;
+        if(s[i]=='m')
+            sum+=p;
         else if(s[i]=='l')
-            sum++;
-        i+=5; //all the words are at least 5 letters long
+            sum+=2*p;
+        i+=4; //all the words are at least 5 letters long
         while(i<s.size() && s[i]!='-') //in case I didn't reach the '-' yet
             i++;
         i++; //to get to the beggining of the next word
+        p*=3;
     }
-    sum*=pow(10-num, 3); //adding all these "middle" to the description
+    for(i=num; i<=10; i++){
+        sum*=3;
+        sum+=1;
+    }
     return sum;
 }
 
@@ -46,7 +49,7 @@ int main()
         for(int i=0; i<n; i++)
         {
             name=V[i].second.substr(0, V[i].second.size()-1);
-            cout<<name<<endl;
+            cout<<name<<" "<<V[i].first<<endl;
         }
         for(int i=0; i<30; i++)
             cout<<"=";
