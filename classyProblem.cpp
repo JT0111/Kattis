@@ -49,7 +49,7 @@ int main()
         for(int i=0; i<n; i++)
         {
             name=V[i].second.substr(0, V[i].second.size()-1);
-            cout<<name<<" "<<V[i].first<<endl;
+            cout<<name<<endl;
         }
         for(int i=0; i<30; i++)
             cout<<"=";
