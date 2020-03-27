@@ -1,30 +1,51 @@
 #include<iostream>
 #include<cmath>
+#include<vector>
 
 using namespace std;
 
-int solution(int min, long long value)
-{
-    int sum=1;
-    long long s = sqrt(value);
-    if(value%s==0)
-        s--;
-    if(min>value)
-        sum=0;
-    for(int i=min; i<=s; i++)
-    {
-        if(value%i==0)
-        {
-            sum+=solution(i+1, value/i);
-            break;
-        }
-    }
-    return sum;
-}
 int main()
 {
     long long n;
+    vector<int> V;
+    int i=0, k=6, il=0;
     cin>>n;
-    cout<<solution(2, n);
+    while(n%2==0){ //finding number of different prime divisors
+        il++;
+        n/=2;
+    }
+    if(il!=0){
+        V.push_back(il);
+        il=0;
+    }
+     while(n%3==0){
+        il++;
+        n/=3;
+    }
+    if(il!=0){
+        V.push_back(il);
+        il=0;
+    }
+    while(k<=sqrt(n)+1){
+        while(n%(k-1)==0){
+            il++;
+            n/=k-1;
+        }
+        if(il!=0){
+            V.push_back(il);
+            il=0;
+        }
+        while(n%(k+1)==0){
+            il++;
+            n/=k+1;
+        }
+        if(il!=0){
+            V.push_back(il);
+            il=0;
+        }
+        k+=6;
+    }
+
+
     return 0;
 }
