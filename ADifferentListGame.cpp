@@ -26,7 +26,7 @@ int main()
         V.push_back(il);
         il=0;
     }
-    while(k<=sqrt(n)+1){
+    while(k<=n+1){
         while(n%(k-1)==0){
             il++;
             n/=k-1;
@@ -45,7 +45,9 @@ int main()
         }
         k+=6;
     }
-
+    for(int i=0; i<V.size(); i++){
+        cout<<V[i]<<" ";
+    }
 
     return 0;
 }
